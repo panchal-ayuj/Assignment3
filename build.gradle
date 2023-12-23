@@ -17,11 +17,18 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
+//	testImplementation 'org.springframework.security:spring-security-test'
+//	implementation group: 'com.google.maps', name: 'google-maps-services', version: '2.2.0'
+//	runtimeOnly group: 'org.aspectj', name: 'aspectjrt', version: '1.9.21'
+//	runtimeOnly group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.21'
+//	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '3.2.1'
+//	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+//	implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
+//	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
 }
 
 tasks.named('test') {
