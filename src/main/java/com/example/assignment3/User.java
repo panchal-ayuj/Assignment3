@@ -42,6 +42,34 @@ public class User implements UserDetails {
 
     Double user_longitude;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Wallet wallet;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "user_id=" + user_id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", user_secret='" + user_secret + '\'' +
+                ", user_status=" + user_status +
+                ", user_enrolled=" + user_enrolled +
+                ", user_enrollapproved=" + user_enrollapproved +
+                ", user_latitude=" + user_latitude +
+                ", user_longitude=" + user_longitude +
+                ", wallet=" + wallet +
+                ", role=" + role +
+                '}';
+    }
+
+    public Wallet getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
+    }
+
     public User() {
     }
 
