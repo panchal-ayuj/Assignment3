@@ -63,6 +63,14 @@ public class Wallet {
     }
 
     public Wallet() {
+        this.setBalance(Double.valueOf(0));
+        this.setOfflineBalance(Double.valueOf(0));
+    }
+
+    public Wallet(int walletId) {
+        this.setWalletId(Long.valueOf(walletId));
+        this.setBalance(Double.valueOf(0));
+        this.setOfflineBalance(Double.valueOf(0));
     }
 
     public Wallet(Long walletId, User user, Double balance, Double offlineBalance) {
