@@ -1,16 +1,34 @@
 package com.example.assignment3;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
+import java.util.List;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "user_table")
-public class User {
+public class User implements UserDetails {
     @Id
     int user_id;
 
-    String user_name;
+    String name;
+
+    String password;
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     String user_secret;
 
@@ -27,9 +45,9 @@ public class User {
     public User() {
     }
 
-    public User(int user_id, String user_name, String user_secret, Boolean user_status, Boolean user_enrolled, Boolean user_enrollapproved, Double user_latitude, Double user_longitude) {
+    public User(int user_id, String name, String user_secret, Boolean user_status, Boolean user_enrolled, Boolean user_enrollapproved, Double user_latitude, Double user_longitude) {
         this.user_id = user_id;
-        this.user_name = user_name;
+        this.name = name;
         this.user_secret = user_secret;
         this.user_status = user_status;
         this.user_enrolled = user_enrolled;
@@ -54,12 +72,12 @@ public class User {
         this.user_id = user_id;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getName() {
+        return name;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUser_secret() {
@@ -102,17 +120,49 @@ public class User {
         this.user_longitude = user_longitude;
     }
 
+    @Enumerated(EnumType.STRING)
+    Role role;
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     @Override
-    public String toString() {
-        return "User{" +
-                "user_id=" + user_id +
-                ", user_name='" + user_name + '\'' +
-                ", user_secret='" + user_secret + '\'' +
-                ", user_status=" + user_status +
-                ", user_enrolled=" + user_enrolled +
-                ", user_enrollapproved=" + user_enrollapproved +
-                ", user_latitude=" + user_latitude +
-                ", user_longitude=" + user_longitude +
-                '}';
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return name;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

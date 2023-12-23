@@ -1,24 +1,15 @@
 package com.example.assignment3.serviceImpl;
 
-import com.example.assignment3.GeoLocation;
 import com.example.assignment3.User;
-import com.example.assignment3.exceptions.GeoLocationNotFoundException;
 import com.example.assignment3.exceptions.UserAlreadyEnrolledException;
 import com.example.assignment3.exceptions.UserNotFoundException;
 import com.example.assignment3.repository.UserRepository;
 import com.example.assignment3.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -36,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
         User user = new User();
         user.setUser_id(user_id);
-        user.setUser_name(user_name);
+        user.setName(user_name);
         user.setUser_secret(generateUserSecret());
         user.setUser_status(true);
         user.setUser_enrolled(false);
