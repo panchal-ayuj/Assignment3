@@ -22,7 +22,7 @@ public class RegisterRequest {
         this.password = password;
     }
 
-    String address;
+
     Double latitude;
     Double longitude;
 
@@ -42,14 +42,6 @@ public class RegisterRequest {
 
     public void setUser_name(String user_name) {
         this.user_name = user_name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public Double getLatitude() {
